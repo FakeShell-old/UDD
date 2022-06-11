@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Boot Ubuntu Touch
-Exec=/bin/bash -c "sudo touch /userdata/.BOOT_UT && sudo reboot -f recovery"
+Exec=/bin/bash -c "sudo touch /userdata/.BOOT_UT && sudo rm /userdata/.BOOT_DROIDIAN && sudo reboot -f recovery"
 Icon=/home/droidian/.local/share/icons/ubuntu.png
