@@ -50,5 +50,14 @@ bash <(wget -qO - https://bardia.tech/desktopfile-install)
 
 After installing you can switch between the OSes by pressing on the icon of that OS.
 
+When you try to switch your OS it will boot into recovery. After it has booted just select boot system now and it boot.
+
 Keep in mind tho recovery might be reset to default on updates (happens on some updates not all)
 So if you have updated and see that it is not working then you have to do this again.
+
+
+
+I'm not responsible for bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed.
+Please do some research if you have any concerns about features included in the products you find here before flashing it!
+YOU are choosing to make these modifications, and if you point the finger at me for messing up your device, I will laugh at you.
+
