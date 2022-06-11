@@ -19,9 +19,11 @@ Alright now we need to clone device repository and build it with our modificatio
 
 git clone https://gitlab.com/ubports/porting/community-ports/android10/xiaomi-redmi-note-9-pro/xiaomi-miatoll.git
 
-cd xiaomi-miatoll
+cd xiaomi-miatoll/ramdisk-recovery-overlay
 
-./build.sh -b out
+Now add init.recovery.qcom.rc (This file will be different per device) and boot_switch.sh here then run:
+
+cd .. && ./build.sh -b out
 
 Now just let it build. After it is done building do:
 
@@ -31,10 +33,22 @@ Now plug your device into your computer and boot into fastboot mode and run the 
 
 fastboot flash recovery recovery.img
 
-fastboot reboot
+fastboot reboot recovery
 
-Now it should boot into the system.
+Download latest Droidian and Ubuntu Touch boot image file and rename them to 
+
+boot_ut.img for Ubuntu Touch and boot_droidian.img for droidian.
+
+Open the terminal once again and move into the directory that the boot image files are located in then plug your device in while inside UBports recovery and run:
+
+adb shell mount /data && adb push boot_ut.img /data && adb push boot_droidian.img
+
+Now it boot into system.
 To install desktop icons to each of the OSes run this script in the terminal of that OS:
 
 bash <(wget -qO - https://bardia.tech/desktopfile-install)
 
+After installing you can switch between the OSes by pressing on the icon of that OS.
+
+Keep in mind tho recovery might be reset to default on updates (happens on some updates not all)
+So if you have updated and see that it is not working then you have to do this again.
