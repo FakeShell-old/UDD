@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# Prompt user for Ubuntu Touch icon installation.
+while true; do
+
+    if [ ! -f $HOME/waynotif ]; then
+       read -p "Do you want to install Ubuntu Touch boot icon? (This must be installled in Droidian) (Y/n) " yn
+    else
+       read -p "Do you want to install Ubuntu Touch boot icon? (This must be installled in Droidian) (y/n)" yn
+    fi
+
+    case $yn in
+         [Yy]* ) UT_ICON=true && break;;
+         [Nn]* ) UT_ICON=false && break;;
+         * ) echo "Please answer Y(es) or N(o).";;
+    esac
+
+done
+
+# Prompt user for Droidian boot icon installation.
+while true; do
+
+    if [ ! -f $HOME/.local/share/applications/boot-droidian.desktop ]; then
+       read -p "Do you want to install Droidian boot? (This must be installled in Ubuntu Touch) (Y/n) " yn
+    else
+       read -p "Do you want to install Droidian boot? (This must be installled in Ubuntu Touch) (Y/n) " yn
+    fi
+
+    case $yn in
+         [Yy]* ) DROIDIAN_ICON=true && break;;
+         [Nn]* ) DROIDIAN_ICON=false && break;;
+         * ) echo "Please answer Y(es) or N(o).";;
+    esac
+
+done
+
+# Ubuntu Touch boot icon installation.
+if [ "$UT_BOOT" == "true" ]; then
+   echo "Installing Ubuntu Touch boot icon..."
+
+   if [ ! -d $HOME/.local/share/icons ]; then
+      mkdir -p $HOME/.local/share/icons
+   fi
+
+   wget https://raw.githubusercontent.com/BardiaMGTGC/UT_Droidian_Dualboot/main/boot-ut.desktop --output-document=$HOME/.local/share/applications/boot-ut.desktop &> /dev/null
+   wget https://raw.githubusercontent.com/BardiaMGTGC/UT_Droidian_Dualboot/main/ubuntu.png --output-document=$HOME/.local/share/icons/ubuntu.png &> /dev/null
+   echo "Ubuntu Touch boot icon installed successfully."
+fi
+
+# Droidian boot icon installation
+if [ "$DROIDIAN_ICON" == "true" ]; then
+   echo "Installing Droidian boot icon..."
+
+   if [ ! -d $HOME/.local/share/icons ]; then
+      mkdir -p $HOME/.local/share/icons
+   fi
+
+   wget https://raw.githubusercontent.com/BardiaMGTGC/UT_Droidian_Dualboot/main/boot-droidian.desktop --output-document=$HOME/.local/share/applications/boot-droidian.png &> /dev/null
+   wget https://raw.githubusercontent.com/BardiaMGTGC/UT_Droidian_Dualboot/main/droidian.png --output-document=$HOME/.local/share/icons/droidian.png &> /dev/null
+   echo "Droidian boot icon installed successfully."
+fi
+
+# Check if anything was installed first if they were then add user to sudoers so that desktop files can use touch and reboot command without a password.
+if [ "$DROIDIAN_ICON" == "false" ] && [ "$UT_ICON" == "false" ]; then
+   echo "Did not add sudoers entries."
+elif sudo cat /etc/sudoers | grep reboot >> /dev/null && sudo cat /etc/sudoers | grep touch >> /dev/null; then
+   echo "Did not add sudoers entries."
+else
+   echo "Adding needed entries to sudoers."
+   # Save username of current user to a file so that it can be used later.
+   whoami > /tmp/whoami
+   if [ "$USER" == "phablet" ]; then
+      sudo mount -o remount,rw /
+      sudo su -c 'export WHOAMI=$(cat /tmp/whoami) && echo "$WHOAMI ALL=(ALL) NOPASSWD:/usr/sbin/reboot" >> /etc/sudoers'
+      sudo su -c 'export WHOAMI=$(cat /tmp/whoami) && echo "$WHOAMI ALL=(ALL) NOPASSWD:/usr/bin/touch" >> /etc/sudoers'
+      sudo mount -o remount,ro /
+      rm -f /tmp/whoami
+      echo "touch and reboot have been added to sudoers."
+   else
+      sudo su -c 'export WHOAMI=$(cat /tmp/whoami) && echo "$WHOAMI ALL=(ALL) NOPASSWD:/usr/sbin/reboot" >> /etc/sudoers'
+      sudo su -c 'export WHOAMI=$(cat /tmp/whoami) && echo "$WHOAMI ALL=(ALL) NOPASSWD:/usr/bin/touch" >> /etc/sudoers'
+      rm -f /tmp/whoami
+      echo "touch and reboot have been added to sudoers."
+   fi
+fi
