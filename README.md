@@ -29,7 +29,7 @@ Now just let it build. After it is done building do:
 
 cd out/tmp/partitions
 
-Now plug your device into your computer and boot into fastboot mode and run the following:
+Now plug your device into your computer and boot into Fastboot mode and run the following:
 
 fastboot flash recovery recovery.img
 
@@ -37,11 +37,11 @@ fastboot reboot recovery
 
 Download latest Droidian and Ubuntu Touch boot image file and rename them to 
 
-boot_ut.img for Ubuntu Touch and boot_droidian.img for droidian.
+boot_ut.img for Ubuntu Touch and boot_droidian.img for Droidian.
 
 Open the terminal once again and move into the directory that the boot image files are located in then plug your device in while inside UBports recovery and run:
 
-adb shell mount /data && adb push boot_ut.img /data && adb push boot_droidian.img
+adb shell mount /data && adb push boot_ut.img /data && adb push boot_droidian.img /data
 
 Now it boot into system.
 To install desktop icons to each of the OSes run this script in the terminal of that OS:
@@ -54,7 +54,6 @@ When you try to switch your OS it will boot into recovery. After it has booted j
 
 Keep in mind tho recovery might be reset to default on updates (happens on some updates not all)
 So if you have updated and see that it is not working then you have to do this again.
-
 
 
 I'm not responsible for bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed.
