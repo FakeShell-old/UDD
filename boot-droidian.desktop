@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Boot Droidian
-Exec=/bin/bash -c "sudo touch /userdata/.BOOT_DROIDIAN && sudo rm /userdata/.BOOT_UT && sudo reboot -f recovery"
+Exec=/bin/bash -c "sudo touch /userdata/.BOOT_DROIDIAN && sudo rm -f /userdata/.BOOT_UT && sudo reboot -f recovery"
 Icon=/home/phablet/.local/share/icons/droidian.png
