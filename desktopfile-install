@@ -3,7 +3,7 @@
 # Prompt user for Ubuntu Touch icon installation.
 while true; do
 
-    if [ ! -f $HOME/waynotif ]; then
+    if [ ! -f $HOME/.local/share/applications/boot-ut.desktop ]; then
        read -p "Do you want to install Ubuntu Touch boot icon? (This must be installled in Droidian) (Y/n) " yn
     else
        read -p "Do you want to install Ubuntu Touch boot icon? (This must be installled in Droidian) (y/n)" yn
@@ -35,7 +35,7 @@ while true; do
 done
 
 # Ubuntu Touch boot icon installation.
-if [ "$UT_BOOT" == "true" ]; then
+if [ "$UT_ICON" == "true" ]; then
    echo "Installing Ubuntu Touch boot icon..."
 
    if [ ! -d $HOME/.local/share/icons ]; then
