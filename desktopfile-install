@@ -6,7 +6,7 @@ while true; do
     if [ ! -f $HOME/.local/share/applications/boot-ut.desktop ]; then
        read -p "Do you want to install Ubuntu Touch boot icon? (This must be installled in Droidian) (Y/n) " yn
     else
-       read -p "Do you want to install Ubuntu Touch boot icon? (This must be installled in Droidian) (y/n)" yn
+       read -p "Do you want to reinstall Ubuntu Touch boot icon? (This must be installled in Droidian) (y/n)" yn
     fi
 
     case $yn in
@@ -23,7 +23,7 @@ while true; do
     if [ ! -f $HOME/.local/share/applications/boot-droidian.desktop ]; then
        read -p "Do you want to install Droidian boot? (This must be installled in Ubuntu Touch) (Y/n) " yn
     else
-       read -p "Do you want to install Droidian boot? (This must be installled in Ubuntu Touch) (Y/n) " yn
+       read -p "Do you want to reinstall Droidian boot? (This must be installled in Ubuntu Touch) (Y/n) " yn
     fi
 
     case $yn in
@@ -55,7 +55,7 @@ if [ "$DROIDIAN_ICON" == "true" ]; then
       mkdir -p $HOME/.local/share/icons
    fi
 
-   wget https://raw.githubusercontent.com/BardiaMGTGC/UT_Droidian_Dualboot/main/boot-droidian.desktop --output-document=$HOME/.local/share/applications/boot-droidian.png &> /dev/null
+   wget https://raw.githubusercontent.com/BardiaMGTGC/UT_Droidian_Dualboot/main/boot-droidian.desktop --output-document=$HOME/.local/share/applications/boot-droidian.desktop &> /dev/null
    wget https://raw.githubusercontent.com/BardiaMGTGC/UT_Droidian_Dualboot/main/droidian.png --output-document=$HOME/.local/share/icons/droidian.png &> /dev/null
    echo "Droidian boot icon installed successfully."
 fi
