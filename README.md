@@ -3,7 +3,7 @@ These set of desktop files and scripts let you dual boot Droidian and Ubuntu Tou
 
 Here is a quick rundown of how to make them work.
 
-First off you need to have UT and Droidian installed.
+First off this guide assumes that you have a working Ubuntu Touch setup and a working Droidian setup and it will continue from there.
 
 Now open up your PC terminal and run the following commands:
 
