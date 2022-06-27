@@ -64,10 +64,15 @@ When you try to switch your OS it will boot into recovery. After it has booted j
 There is also a precompiled version of recovery available (only works on miatoll) which can be flashed in fastboot.
 Keep in mind that it might be outdated.
 Download here: [ubports-recovery-miatoll-custom.img] (https://bardia.tech/ubports-recovery-miatoll-custom.img)
+
 Keep in mind tho recovery might be reset to default on updates (happens on some updates not all)
+
 So if you have updated and see that it is not working then you have to do this again.
+
 Keep in mind to keep the files in /userdata/ updated (boot_ut.img and boot_droidian.img)
+
 For UT updates new kernel (if the kernel is updated at all) can be found at UBports Gitlab.
+
 For Droidian when doing apt upgrade new kernel is found at /boot (if kernel gets updated), It can be renamed to boot_droidian and placed in /userdata.
 
 I'm not responsible for bricked devices, dead SD cards, thermonuclear war, or you getting fired because the alarm app failed.
