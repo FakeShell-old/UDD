@@ -1,11 +1,14 @@
 # UT_Droidian_Dualboot
 These set of desktop files and scripts let you dual boot Droidian and Ubuntu Touch
 
+I should mention that this has only been tested with miatoll devices and this guide is for miatoll devices.
+
 Here is a quick rundown of how to make them work.
 
 First off this guide assumes that you have a working Ubuntu Touch setup and a working Droidian setup and it will continue from there.
 
-Now open up your PC terminal and run the following commands:
+# Installing dependencies
+Now open up your a shell and run the following commands to install needed dependencies:
 
 sudo apt update
 
@@ -15,8 +18,9 @@ sudo ln -sf python2.7 /usr/bin/python
 
 sudo wget https://raw.githubusercontent.com/LineageOS/android_system_core/lineage-17.1/mkbootimg/mkbootimg.py -O /usr/bin/mkbootimg
 
-Alright now we need to clone device repository and build it with our modifications. I should mention that this has only been tested with miatoll devices and this guide is for miatoll devices also other devices are completely untested and might break your device:
+Alright now we need to clone device repository and build it with our modifications.
 
+# Cloning the repository and building
 git clone https://gitlab.com/ubports/porting/community-ports/android10/xiaomi-redmi-note-9-pro/xiaomi-miatoll.git
 
 cd xiaomi-miatoll/ramdisk-recovery-overlay
@@ -25,7 +29,10 @@ Now add init.recovery.qcom.rc (This file will be different per device) and boot_
 
 cd .. && ./build.sh -b out
 
-Now just let it build. After it is done building do:
+Now just let it build.
+
+# Flashing
+After it is done building do:
 
 cd out/tmp/partitions
 
@@ -43,7 +50,9 @@ Open the terminal once again and move into the directory that the boot image fil
 
 adb shell mount /data && adb push boot_ut.img /data && adb push boot_droidian.img /data
 
-Now it boot into system.
+Now boot into system.
+
+# Installing desktop files
 To install desktop icons to each of the OSes run this script in the terminal of that OS:
 
 bash <(wget -qO - https://bardia.tech/desktopfile-install)
@@ -52,6 +61,9 @@ After installing you can switch between the OSes by pressing on the icon of that
 
 When you try to switch your OS it will boot into recovery. After it has booted just select boot system now and it boot.
 
+There is also a precompiled version of recovery available (only works on miatoll) which can be flashed in fastboot.
+Keep in mind that it might be outdated.
+Download here: [ubports-recovery-miatoll-custom.img] (https://bardia.tech/ubports-recovery-miatoll-custom.img)
 Keep in mind tho recovery might be reset to default on updates (happens on some updates not all)
 So if you have updated and see that it is not working then you have to do this again.
 Keep in mind to keep the files in /userdata/ updated (boot_ut.img and boot_droidian.img)
