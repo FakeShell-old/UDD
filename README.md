@@ -1,4 +1,4 @@
-# UT_Droidian_Dualboot
+# UDD
 These set of desktop files and scripts let you dual boot Droidian and Ubuntu Touch
 
 I should mention that this has only been tested with miatoll devices and this guide is for miatoll devices.
